@@ -17,6 +17,7 @@ const Test = () => {
         navigate("/login")
       }
       if (response.data.question) {
+        setSelected(null)
         setQuestion(response.data.question)
         setChoices(response.data.choices)
         setTest(response.data.test)
@@ -31,9 +32,6 @@ const Test = () => {
   }
   useEffect(() => {
     getTest()
-    return () => {
-      setQuestion('')
-    };
   }, [])
 
   const handleSubmit = async (e) => {
@@ -52,7 +50,7 @@ const Test = () => {
       { choices.map((choice, index) => (
         <React.Fragment key={index}>
           <label>
-            <input type="radio" name="answer" value={index} onChange={handleChange} required />
+            <input type="radio" name="answer" value={index} onChange={handleChange} checked={selected == index} required />
             {choice}
           </label><br />
         </React.Fragment>

@@ -55,10 +55,11 @@ app.post('/login', (req, res, next) => {
         return next(err)
       }
       return res.json({email: user.email})
-    }) // a passport ezzel menti el a usert a session-be
-    // ha nem használok callback functiont itt, akkor magától megcsinálja
-    // itt azért használok callback-et, mert JSON válaszokat küldök
+    }) 
   })(req, res, next)
+  // a passport ezzel menti el a usert a session-be
+  // ha nem használok callback functiont itt, akkor magától megcsinálja
+  // itt azért használok callback-et, mert JSON válaszokat küldök
 })
 
 app.get('/', (req, res) => {
@@ -83,26 +84,23 @@ app.post('/test', (req, res) => {
   if (!req.isAuthenticated()) { 
     return res.json({loggedin: false})
   }
-  if (req.user.testCount === undefined) {
-    req.user.testCount = 0
+  let next = 0
+  if (req.body.test === null) {
     req.user.result = 0
   } else {
-    req.user.testCount++
-  }
-  if (req.body.test !== null) {
     const questionObj = questions[req.body.test]
     if (questionObj.answers[req.body.selected].isAnswer) {
       req.user.result++
-      console.log(req.user.result);
     }
+    next = req.body.test + 1
   }
-  if (!questions[req.user.testCount]) {
+  if (next >= questions.length) {
     return res.json({done: true, loggedin: true})
   }
-  const questionObj = questions[req.user.testCount]
+  const questionObj = questions[next]
   const question = questionObj.question
   const choices = questionObj.answers.map(answer => answer.choice)
-  return res.json({ question, choices, test: req.user.testCount, loggedin: true })
+  return res.json({ question, choices, test: next, loggedin: true })
 })
 
 app.get('/result', (req, res) => {

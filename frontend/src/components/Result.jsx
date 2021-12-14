@@ -25,7 +25,7 @@ const Result = () => {
   }, [])
   return (
     <div className='container result'>
-      <h1>{all} válaszból {result} volt helyes ({parseInt(result/all*100)})%</h1>
+      <h1>{all} válaszból {result} volt helyes: {parseInt(result/all*100)}%</h1>
     </div>
   )
 }
