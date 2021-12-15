@@ -9,7 +9,6 @@ const Home = () => {
   const getSession = async () => {
     try {
       const response = await axios.get('http://localhost:5000', {withCredentials: true})
-      console.log(response.data);
       setIsLoggdedIn(response.data.loggedin)
     } catch (error) {
       setIsLoggdedIn(false)
