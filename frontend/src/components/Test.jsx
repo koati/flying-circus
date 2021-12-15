@@ -8,14 +8,13 @@ const Test = () => {
   const [choices, setChoices] = useState([])
   const [test, setTest] = useState(null)
   const [selected, setSelected] = useState(null)
+  const [error, setError] = useState(null)
+
   const navigate = useNavigate()
 
   const getTest = async () => {
     try {
       const response = await axios.post('http://localhost:5000/test', {test, selected}, {withCredentials: true})
-      if (!response.data.loggedin) {
-        navigate("/login")
-      }
       if (response.data.question) {
         setSelected(null)
         setQuestion(response.data.question)
@@ -24,10 +23,10 @@ const Test = () => {
       } else if (response.data.done) {
         navigate("/result")
       } else {
-        return <div className="error">Hiba történt</div>
+        return setError({statusText: 'Unknown error'})
       }
-      console.log(response.data);
     } catch (error) {
+      setError(error.response)
     }
   }
   useEffect(() => {
@@ -42,6 +41,18 @@ const Test = () => {
   const handleChange = (e) => {
     setSelected(e.target.value)
   }
+
+  if (error) {
+    if (error.status === 401) {
+      navigate('/login')
+    } else {
+      return (
+        <div className='container result'>
+          <h2 className='error'>Error: {error.statusText}</h2>
+        </div>
+      )
+    }
+  } 
 
   return (
     <div className='container test'>

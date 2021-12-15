@@ -17,11 +17,15 @@ function App() {
           <ul>
             <li><Link to="/" className="active">Home</Link></li>
             <li><Link to="/login">Login</Link></li>
-            { email && <li><Link to="/logout">Logout</Link></li>}
             <li><Link to="/test">Test</Link></li>
             <li><Link to="/result">Result</Link></li>
           </ul>
-          <span>{email}</span>  
+          { email && (
+            <ul>
+              <li><span>{email}</span></li>
+              <li><Link to="/logout">Logout</Link></li>
+            </ul>
+          )}
         </nav> 
       </header>
       <Routes>

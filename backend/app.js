@@ -82,7 +82,7 @@ app.delete("/logout", (req,res) => {
 
 app.post('/test', (req, res) => {
   if (!req.isAuthenticated()) { 
-    return res.json({loggedin: false})
+    return res.sendStatus(401)
   }
   let next = 0
   if (req.body.test === null) {
@@ -105,7 +105,7 @@ app.post('/test', (req, res) => {
 
 app.get('/result', (req, res) => {
   if (!req.isAuthenticated()) { 
-    return res.json({loggedin: false})
+    return res.sendStatus(401)
   }
   return res.json({ result: req.user.result, all: questions.length, loggedin: true })
 })

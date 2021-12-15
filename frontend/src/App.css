@@ -30,6 +30,11 @@ li a {
 li a:hover {
   background-color: #111;
 }
+li span {
+  display: inline-block;
+  padding: 14px 16px;
+  color: whitesmoke;
+}
 /* Header Nav End */
 h1, h2 {
   margin-bottom: 30px;
@@ -37,9 +42,6 @@ h1, h2 {
 .container {
   width: 1200px;
   margin: 0 auto;
-}
-.home {
-  text-align: center;
 }
 /* Form */
 input[type=text], input[type=password], input[type=email] {
@@ -72,7 +74,7 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
-form .error {
+.error {
   padding: 20px;
   background-color: red;
   color: whitesmoke;
@@ -85,9 +87,6 @@ form .error {
 .test {
   width: 600px;
 }
-
-nav span {
-  color: whitesmoke;
-
-  float: right;
+.home, .result {
+  text-align: center;
 }
