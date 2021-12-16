@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
@@ -8,13 +8,16 @@ const Home = () => {
 
   const getSession = async () => {
     try {
-      const response = await axios.get('http://localhost:5000', {withCredentials: true})
+      const response = await axios.get('/')
       setIsLoggdedIn(response.data.loggedin)
     } catch (error) {
       setIsLoggdedIn(false)
     }
   }
-  getSession()
+  useEffect(() => {
+    getSession()
+  }, [])
+  
   return (
     <div className='container home'>
       <h1>Welcome to the Flying Circus</h1>

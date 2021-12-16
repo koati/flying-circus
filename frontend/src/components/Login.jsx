@@ -11,7 +11,7 @@ const Login = ({setUser}) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:5000/login', {email, password}, { withCredentials: true })
+      const res = await axios.post('/login', {email, password})
       sessionStorage.setItem("email", res.data.email)
       setUser(email)
       setErrorMessage('')

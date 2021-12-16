@@ -12,7 +12,7 @@ const Result = () => {
 
   const getResult = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/result', {withCredentials: true})
+      const response = await axios.get('/result')
       setResult(response.data.result || 0)
       setAll(response.data.all)
     } catch (error) {

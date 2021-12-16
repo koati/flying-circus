@@ -10,7 +10,7 @@ const port = 5000
 const app = express()
 app.listen(port, () => console.log(`App is running on localhost:${port}`))
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
+app.use(cors({ credentials: true, origin: 'https://flyingcircus.sloppy.zone' }))
 app.use(express.json())
 app.use(session({
   secret: 'secret', 

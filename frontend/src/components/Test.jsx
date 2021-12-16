@@ -14,7 +14,7 @@ const Test = () => {
 
   const getTest = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/test', {test, selected}, {withCredentials: true})
+      const response = await axios.post('/test', {test, selected})
       if (response.data.question) {
         setSelected(null)
         setQuestion(response.data.question)
@@ -66,7 +66,7 @@ const Test = () => {
           </label><br />
         </React.Fragment>
       )) }
-       { choices.length && <input type="submit" value="Submit" />}
+       { choices.length > 0 && <input type="submit" value="Submit" /> }
       </form>
     </div>
   )

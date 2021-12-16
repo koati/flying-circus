@@ -6,10 +6,14 @@ import Login from './components/Login'
 import Logout from './components/Logout'
 import Result from './components/Result'
 import Test from './components/Test'
+import axios from 'axios';
 
 function App() {
   const email = window.sessionStorage.getItem("email") || ''
   const [user, setUser] = useState(email)
+
+  axios.defaults.baseURL = process.env.REACT_APP_API_URL
+  axios.defaults.withCredentials = true
   
   return (
     <div className="App">

@@ -9,7 +9,7 @@ const Logout = ({setUser}) => {
     try {
       window.sessionStorage.removeItem("email")
       setUser('')
-      await axios.delete('http://localhost:5000/logout', {withCredentials: true})
+      await axios.delete('/logout')
     } catch (error) {
       return false
     }
